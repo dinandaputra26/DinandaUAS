@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-span-6 loat-right">
                     <div class="input-group">
-                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                        <input class="form-control" type="text" wire:model="search" placeholder="Search" aria-label="Search" aria-describedby="search-addon">
                         <button type="button" class="btn btn-outline-dark">search</button>
                     </div>
                 </div>
@@ -51,7 +51,6 @@
                     </tr><?php $no++; ?>
                     @endforeach
 
-                    <!-- More people... -->
                 </tbody>
             </table>
 

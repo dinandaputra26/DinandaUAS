@@ -28,7 +28,7 @@ class DagangController extends Controller
      */
     public function create()
     {
-        $title = "Input Buah";
+        $title = "Input Biji Buah";
         return view('admin.inputdagang', compact('title'));
     }
 

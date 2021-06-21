@@ -29,7 +29,7 @@
         }
 
         .bg-sidebar {
-            background: #3d68ff;
+            background: #4bc714;
         }
 
         .cta-btn {
@@ -37,7 +37,7 @@
         }
 
         .upgrade-btn {
-            background: #1947ee;
+            background: #285e11;
         }
 
         .upgrade-btn:hover {
@@ -45,11 +45,11 @@
         }
 
         .active-nav-link {
-            background: #1947ee;
+            background: #285e11;
         }
 
         .nav-item:hover {
-            background: #1947ee;
+            background: #285e11;
         }
 
         .account-link:hover {
@@ -60,12 +60,13 @@
 
 <body class="bg-gray-100 font-family-karla flex">
 
+    @if(Route::has('login'))
+    @auth
+    @if(Auth::user()->roles == 1)
+        
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
         <div class="p-6">
             <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin AS</a>
-            <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-                <i class="fas fa-plus mr-3"></i> New Report
-            </button>
         </div>
         <nav class="text-white text-base font-semibold pt-3">   
             <a href="{{route('home')}}" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
@@ -86,10 +87,29 @@
             </a>
         </nav>
     </aside>
-
+    @else
+    
+    <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
+        <div class="p-6">
+            <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">User AS</a>
+        </div>
+        <nav class="text-white text-base font-semibold pt-3">   
+            <a href="{{route('home')}}" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
+                <i class="fas fa-tachometer-alt mr-3"></i>
+                Home
+            </a>
+            <a href="{{route('chart')}}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                <i class="fas fa-sticky-note mr-3"></i>
+                Chart
+            </a>
+        </nav>
+    </aside>
+    @endif
+    @endauth
+@endif
     <div class="w-full flex flex-col h-screen overflow-y-hidden">
         <!-- Desktop Header -->
-        <header class="w-full items-center bg-white py-2 px-6 hidden sm:flex">
+        <header class="w-full items-center bg-success py-2 px-6 hidden sm:flex">
             <div class="w-1/2"></div>
             <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
                 @livewire('navigation-menu')
@@ -108,45 +128,22 @@
 
             <!-- Dropdown Nav -->
             <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
-                <a href="index.html" class="flex items-center active-nav-link text-white py-2 pl-4 nav-item">
+                <a href="{{route('home')}}" class="flex items-center active-nav-link text-white py-4 pl-6 nav-item">
                     <i class="fas fa-tachometer-alt mr-3"></i>
-                    Dashboard
+                    Home
                 </a>
-                <a href="blank.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <a href="{{route('chart')}}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                     <i class="fas fa-sticky-note mr-3"></i>
-                    Blank Page
+                    Chart
                 </a>
-                <a href="tables.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <a href="{{route('dagang.index')}}" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                     <i class="fas fa-table mr-3"></i>
-                    Tables
+                    Dagang
                 </a>
-                <a href="forms.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <a href="forms.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                     <i class="fas fa-align-left mr-3"></i>
                     Forms
                 </a>
-                <a href="tabs.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-tablet-alt mr-3"></i>
-                    Tabbed Content
-                </a>
-                <a href="calendar.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-calendar mr-3"></i>
-                    Calendar
-                </a>
-                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-cogs mr-3"></i>
-                    Support
-                </a>
-                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-user mr-3"></i>
-                    My Account
-                </a>
-                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-sign-out-alt mr-3"></i>
-                    Sign Out
-                </a>
-                <button class="w-full bg-white cta-btn font-semibold py-2 mt-3 rounded-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-                    <i class="fas fa-arrow-circle-up mr-3"></i> Upgrade to Pro!
-                </button>
             </nav>
             <!-- <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
                 <i class="fas fa-plus mr-3"></i> New Report

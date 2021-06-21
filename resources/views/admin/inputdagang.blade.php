@@ -17,7 +17,7 @@
                         <div class="grid grid-cols-3 gap-6">
                             <div class="col-span-3 sm:col-span-2">
                                 <label for="company_website" class="block text-sm font-medium text-gray-700">
-                                    Nama Pohon Buah
+                                    Nama Biji Buah
                                 </label>
                                 <div class="mt-1 flex rounded-md shadow-sm">
                                     <input type="text" name="nama" value="{{(isset($tampilandagang))?$tampilandagang->nama:old('nama')}}" class="@error('nama') border-red-500 @enderror focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="Nama max 255">
@@ -36,7 +36,7 @@
                             </div>
                             <div class="text-xs text-red-600">@error('description') {{$message}} @enderror</div>
                             <p class="mt-2 text-sm text-gray-500">
-                                Penjelasan singkat mengenai pohon buah
+                                Keterangan Biji Buah
                             </p>
                         </div>
 
